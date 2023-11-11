@@ -8,7 +8,21 @@ export class ClassificationController {
   @Post()
   @ApiOkResponse({
     description: 'The category of the game',
-    type: GameCategoryClassificationDto,
+    content: {
+      'application/json': {
+        schema: {
+          example: {
+            category: 'action',
+          },
+          properties: {
+            category: {
+              type: 'string',
+              description: 'The category',
+            },
+          },
+        },
+      },
+    },
   })
   @HttpCode(200)
   classify(
