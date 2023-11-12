@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ClassificationController } from './classification.controller';
 
+// Basic Test Suite for ClassificationController
 describe('ClassificationController', () => {
   let controller: ClassificationController;
 
@@ -12,6 +13,7 @@ describe('ClassificationController', () => {
     controller = module.get<ClassificationController>(ClassificationController);
   });
 
+  // Default test
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
@@ -19,7 +21,7 @@ describe('ClassificationController', () => {
   // Test the classify method
   describe('classify', () => {
     // Test 1
-    it('should return string for valid request and 200 status code', () => {
+    it('should return string for valid request', () => {
       const response = controller.classify({
         description: 'Your game description goes here',
       });

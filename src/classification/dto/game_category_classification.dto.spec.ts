@@ -3,10 +3,12 @@ import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { ValidationError } from 'class-validator';
 
+// Helper function to stringify errors
 export function stringified(errors: ValidationError[]): string {
   return JSON.stringify(errors);
 }
 
+// Basic Test Suite for GameCategoryClassificationDto
 describe('GameCategoryClassificationDto', () => {
   // Test 1
   it('should only accept strings for description', async () => {
@@ -36,7 +38,6 @@ describe('GameCategoryClassificationDto', () => {
   it('should have a valid example', () => {
     const dto = new GameCategoryClassificationDto();
     dto.description = 'Your game description goes here';
-    // Access and check the example
     expect(dto.description).toBeDefined();
     expect(dto.description).toEqual(expect.any(String)); // Assuming it should be a string
   });
