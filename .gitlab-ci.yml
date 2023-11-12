@@ -1,0 +1,36 @@
+stages:
+  - build
+  - test
+
+cache:
+  untracked: true
+  key: '$CI_BUILD_REF_NAME'
+  paths:
+    - dist/
+
+
+.node:base:
+  image: node:20.9.0-alpine3.18
+  before_script:
+   - "npm ci"
+
+.node:build:
+  extends: .node:base
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - dist
+
+build-project:
+  extends: .node:build
+
+
+test-project:
+  stage: test
+  extends: .node:base
+  dependencies:
+    - build-project
+  script: ["npm test"]
